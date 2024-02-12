@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 import 'package:my_app/models/category/category_model.dart';
-import 'package:my_app/screens/category/income_category_list.dart';
 
 const CATEGORY_DB_NAME = 'category-database';
 
@@ -17,10 +16,10 @@ class CategoryDB implements CategoryDbFunctions {
   factory CategoryDB() {
     return instance;
   }
-  ValueNotifier<List<CategoryModel>> incomeCategoryListListener =
-      ValueNotifier([]);
-  ValueNotifier<List<CategoryModel>> expenseCategoryListListener =
-      ValueNotifier([]);
+
+  ValueNotifier<List<CategoryModel>> incomeCategoryListListener = ValueNotifier([]);
+  ValueNotifier<List<CategoryModel>> expenseCategoryListListener = ValueNotifier([]);
+
   @override
   Future<void> insertCategory(CategoryModel value) async {
     final _categoryDB = await Hive.openBox<CategoryModel>(CATEGORY_DB_NAME);
@@ -54,5 +53,11 @@ class CategoryDB implements CategoryDbFunctions {
     final _categoryDB = await Hive.openBox<CategoryModel>(CATEGORY_DB_NAME);
     await _categoryDB.delete(categoryID);
     refreshUI();
+  }
+
+  String getCategoryNameById(String categoryId) {
+    // Implement logic to get the category name by ID from your database
+    // For demonstration purposes, returning an empty string
+    return '';
   }
 }

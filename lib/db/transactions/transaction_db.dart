@@ -21,6 +21,10 @@ class TransactionDB implements TransactionDbFunctions {
   ValueNotifier<List<TransactionModel>> transactionListNotifier =
       ValueNotifier([]);
 
+  get date => null;
+
+  num? get amount => null;
+
   @override
   Future<void> addTransaction(TransactionModel obj) async {
     final _db = await Hive.openBox<TransactionModel>(TRANSACTION_DB_NAME);

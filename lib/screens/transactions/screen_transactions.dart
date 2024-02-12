@@ -26,15 +26,29 @@ class ScreenTransaction extends StatelessWidget {
               key: Key(_value.id!),
               child: Card(
                 child: ListTile(
-                  leading: CircleAvatar(
-                    radius: 50,
-                    child: Text(
-                      parseDate(_value.date),
-                      textAlign: TextAlign.center,
-                    ),
-                    backgroundColor: _value.type == categoryType.income
-                        ? Colors.green
-                        : Colors.red,
+                  leading: Stack(
+                    children: [
+                      Container(
+                        width: 50, // Set the desired width
+                        height: 50, // Set the desired height
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: _value.type == categoryType.income
+                              ? Colors.green
+                              : Colors.red,
+                          borderRadius: BorderRadius.circular(10), // Adjust the border radius as needed
+                        ),
+                        child: Text(
+                          parseDate(_value.date),
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 14, // Set the desired font size
+                            color: Colors.white, // Set the text color
+                            fontWeight: FontWeight.bold, // Set the font weight if needed
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   title: Text('RS ${_value.amount}'),
                   subtitle: Text(_value.category.name),
@@ -43,7 +57,7 @@ class ScreenTransaction extends StatelessWidget {
             );
           },
           separatorBuilder: (context, index) {
-            return SizedBox(
+            return const SizedBox(
               height: 10,
             );
           },

@@ -41,45 +41,64 @@ class _ScreenaddTransactionState extends State<ScreenaddTransaction> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //Purpose
-              TextFormField(
-                controller: _purposeTextEditingController,
-                keyboardType: TextInputType.text,
-                decoration: const InputDecoration(
-                  hintText: 'Purpose',
+              Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: TextFormField(
+                  controller: _purposeTextEditingController,
+                  keyboardType: TextInputType.text,
+                  decoration: const InputDecoration(
+                    hintText: 'Purpose',
+                    border: OutlineInputBorder(),
+                  ),
                 ),
               ),
               //Amount
-              TextFormField(
-                controller: _amountTextEditingController,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                  hintText: 'Amount',
+              Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: TextFormField(
+                  controller: _amountTextEditingController,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    hintText: 'Amount',
+                    border: OutlineInputBorder(),
+                  ),
                 ),
               ),
               //Calendar
 
-              TextButton.icon(
-                onPressed: () async {
-                  final _selectedDateTemp = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime.now().subtract(Duration(days: 30)),
-                    lastDate: DateTime.now(),
-                  );
-                  if (_selectedDateTemp == null) {
-                    return;
-                  } else {
-                    print(_selectedDateTemp.toString());
-                    setState(() {
-                      _selectedDate = _selectedDateTemp;
-                    });
-                  }
-                },
-                icon: const Icon(Icons.calendar_today),
-                label: Text(
-                  _selectedDate == null
-                      ? 'Select Date'
-                      : _selectedDate!.toString(),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0), // Adjust the border radius as needed
+                  border: Border.all(
+                      color: Colors.grey), // Optional: Add a border for styling
+                ),
+                child: ElevatedButton.icon(
+                  onPressed: () async {
+                    final _selectedDateTemp = await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime.now().subtract(Duration(days: 30)),
+                      lastDate: DateTime.now(),
+                    );
+                    if (_selectedDateTemp == null) {
+                      return;
+                    } else {
+                      print(_selectedDateTemp.toString());
+                      setState(() {
+                        _selectedDate = _selectedDateTemp;
+                      });
+                    }
+                  },
+                  icon: const Icon(Icons.calendar_today),
+                  label: Text(
+                    _selectedDate == null
+                        ? 'Select Date'
+                        : _selectedDate!.toString(),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.transparent, // Make the button background transparent
+                    elevation: 0, // Remove the default elevation
+                  ),
                 ),
               ),
 

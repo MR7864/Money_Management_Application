@@ -24,10 +24,18 @@ class _ScreenCategoryState extends State<ScreenCategory>
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TabBar(controller: _tabController, tabs: const [
-          Tab(text: 'INCOME'),
-          Tab(text: 'EXPENSE'),
-        ]),
+        TabBar(indicatorSize: TabBarIndicatorSize.tab,
+            controller: _tabController,
+            splashBorderRadius: BorderRadius.circular(10),
+            indicator: BoxDecoration(
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(10),
+                color: Color.fromARGB(244, 28, 5, 74)),
+            labelColor: Color.fromARGB(244, 235, 221, 255),
+            tabs: const [
+              Tab(text: 'INCOME'),
+              Tab(text: 'EXPENSE'),
+            ]),
         Expanded(
           child: TabBarView(controller: _tabController, children: const [
             IncomeCategoryList(),
